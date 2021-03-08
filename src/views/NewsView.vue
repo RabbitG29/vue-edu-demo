@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { fetchNewsList } from '../api/index.js'
 export default {
   data(){
     return {
@@ -19,10 +19,7 @@ export default {
     }
   },
   async created(){
-    this
-    // axio.get은 Promise 객체를 반환함.
-    await axios.get('https://api.hnpwa.com/v0/news/1.json').then((res) => {
-      console.log(res)
+    await fetchNewsList().then((res) => {
       this.newses = res.data
     }).catch((err) => {
       console.log(err)
