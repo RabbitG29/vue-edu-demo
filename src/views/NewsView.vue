@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { fetchNewsList } from '../api/index.js'
 export default {
   data(){
     return {
@@ -19,11 +18,8 @@ export default {
     }
   },
   async created(){
-    await fetchNewsList().then((res) => {
-      this.newses = res.data
-    }).catch((err) => {
-      console.log(err)
-    })
+    await this.$store.dispatch('FETCH_NEWS')
+    this.newses = this.$store.getters.GET_NEWS
   },
 }
 </script>
